@@ -37,8 +37,8 @@ public class MotorPH_Payroll_System_Test {
         
         String fn;
         
-        while((fn=br1.readLine())!=null){
-            firstname.add(fn);                       
+        while((fn=br1.readLine())!=null){// save the content into variable fn
+            firstname.add(fn);    // save every content to array                   
         }
 //------------------------------------ This part is for reading lastname----------------------------------------           
        File file2 =new File("C:\\Users\\charm\\Documents\\NetBeansProjects\\MotorPH_Payroll_System_Test\\lastname.txt");
@@ -69,7 +69,7 @@ public class MotorPH_Payroll_System_Test {
             try{
                 int input = inputscan.nextInt();// save user output to variable enterNum
                 int n = input-10001;
-                int arrayTest = data.empNum[n];
+                int arrayTest = data.empNum[n];// to test if given employee number is within array
                 test1.add(n);
                                 
                 success=true;               
@@ -321,7 +321,7 @@ public class MotorPH_Payroll_System_Test {
 //------------------------------------- Show Payslip----------------------------------------------------------------------------        
             
             System.out.println("-------------------------------------------------------------------------------------------------------------------------------------------"); 
-            System.out.println("PAYSLIP");  
+            System.out.println("PAYSLIP");            
             System.out.println();
             System.out.println("Name:\t\t"+lastname.get(eNum)+","+firstname.get(eNum));//get names using the file handling
             System.out.println("Position:\t"+data.position[eNum]);  
@@ -329,6 +329,8 @@ public class MotorPH_Payroll_System_Test {
             System.out.println();
             System.out.println();
             System.out.println("EARNINGS");
+            System.out.println("(Note: Salary Earned is temporarily based on hourly rate)");
+            System.out.println();
             float sal =  data.sal[eNum]/(21*8)*(tsum1);// compute salary using hours worked
             System.out.println("Salary Earned for the Period: "+sal);
             System.out.println();    
@@ -356,7 +358,7 @@ public class MotorPH_Payroll_System_Test {
             System.out.println("Government Deductions");
             
 //----------------------------- Compute SSS deduction----------------------------------------------------            
-            double sss=0;// if-elseif-else statement is to check the category of the salary  
+            double sss;// if-elseif-else statement is to check the category of the salary  
             if(data.sal[eNum]<=3250){
                 sss = 135;
             }
@@ -377,7 +379,7 @@ public class MotorPH_Payroll_System_Test {
             }    
             System.out.println("SSS:\t\t"+sss);
 //---------------------------------- Compute Philhealth deduction------------------------------------------  
-           double ph = 0;
+           double ph;
           
            if(data.sal[eNum]<=10000){//if-elseif-else statement checks the range of salary and applies formula in each range
                ph = 300/2;
@@ -392,7 +394,7 @@ public class MotorPH_Payroll_System_Test {
 
             System.out.println("Philhealth:\t"+ph);
 //---------------------------------- Compute PAG-IBIG deduction------------------------------------------  
-        double pagibig = 0;
+        double pagibig;
         
         if(data.sal[eNum]>1000 & data.sal[eNum]<=1500){//if-else statement checks the range of salary and applies formula in each rang
             pagibig = data.sal[eNum]*0.01;
@@ -415,7 +417,7 @@ public class MotorPH_Payroll_System_Test {
             System.out.println("Taxable Income:   "+taxable);
             
 //---------------------------------- Compute for Withholding Tax ------------------------------------------  
-            double tax = 0;
+            double tax;
             
             if(data.sal[eNum] <=20832){//if-elseif-else statement checks the range of taxable income and applies formula in each range 
                 tax = 0;
